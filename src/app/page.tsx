@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google"
 import LargeHeading from "@/components/ui/LargeHeading"
-import { Metadata } from "next"
-import Paragraph from "@/components/ui/LargeHeading"
+import type { Metadata } from "next"
+import Paragraph from "@/components/ui/Paragraph"
 import Link from "next/link"
 import Image from "next/image"
 
