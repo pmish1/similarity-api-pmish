@@ -27,7 +27,7 @@ const ApiKeyOptions: FC<ApiKeyOptionsProps> = ({ apiKeyId, apiKeyKey }) => {
         setIsCreatingNew(true)
 
         try {
-            await revokeApiKey({ keyId: apiKeyId })
+            await revokeApiKey()
             await createApiKey()
             router.refresh()
         } catch (error) {
@@ -44,7 +44,7 @@ const ApiKeyOptions: FC<ApiKeyOptionsProps> = ({ apiKeyId, apiKeyKey }) => {
     const revokeCurrentApiKey = async () => {
         setIsRevoking(true)
         try {
-            await revokeApiKey({ keyId: apiKeyId })
+            await revokeApiKey()
             router.refresh()
         } catch (error) {
             toast({
