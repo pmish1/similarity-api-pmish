@@ -1,9 +1,14 @@
-//because we have a onclick handler, server components cannot have that kind of interactivity
 "use client"
+
+import { signOut } from "next-auth/react"
 import { FC, useState } from "react"
-import Button from "./ui/Button"
-import { signIn, signOut } from "next-auth/react"
-import { toast } from "./ui/Toast"
+import Button from "./Button"
+import { toast } from "./Toast"
+
+/**
+ * NextJS does not allow to pass function from server -> client components,
+ * hence this unreusable component.
+ */
 
 interface SignOutButtonProps {}
 
@@ -11,13 +16,13 @@ const SignOutButton: FC<SignOutButtonProps> = ({}) => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const signUserOut = async () => {
-        setIsLoading(true)
         try {
+            setIsLoading(true)
             await signOut()
         } catch (error) {
             toast({
                 title: "Error signing out",
-                message: "Please try again later",
+                message: "Please try again later.",
                 type: "error",
             })
         }
@@ -25,7 +30,7 @@ const SignOutButton: FC<SignOutButtonProps> = ({}) => {
 
     return (
         <Button onClick={signUserOut} isLoading={isLoading}>
-            Sign Out
+            Sign out
         </Button>
     )
 }
