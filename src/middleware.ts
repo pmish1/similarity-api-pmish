@@ -4,6 +4,9 @@ import { NextResponse } from "next/server"
 import { Ratelimit } from "@upstash/ratelimit"
 import { Redis } from "@upstash/redis"
 
+//issue with Next.js 13 where importing variables from a .env file isn't working properly
+//I understand having secret keys exposed is not secure, however, with the current version of
+//Next.js, this is the only way I managed to get this to work.
 const redis = new Redis({
     url: "https://suited-kit-36110.upstash.io",
     token: "AY0OASQgMjE5Y2Q1OGYtYjczMS00Y2JjLWEyZWUtYzZiYjg4NjFhNTM4ODdiNjA4NTRiODAzNDZlMGI0OGM2N2ZkNGI4YjRkZjQ=",
@@ -11,7 +14,7 @@ const redis = new Redis({
 
 const ratelimit = new Ratelimit({
     redis: redis,
-    limiter: Ratelimit.slidingWindow(50, "1 h"),
+    limiter: Ratelimit.slidingWindow(5, "1 h"),
 })
 
 export default withAuth(
