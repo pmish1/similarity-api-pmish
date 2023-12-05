@@ -39,7 +39,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
                     model: "text-embedding-ada-002",
                     input: text,
                 })
-                console.log(res)
 
                 return res.data.data[0].embedding
             })
@@ -67,7 +66,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             return res.status(400).json({ error: error.issues })
         }
         console.log(error)
-        return res.status(500).json({ error: "Internal server fuck you" })
+        return res.status(500).json({ error: "Internal server error" })
     }
 }
 
